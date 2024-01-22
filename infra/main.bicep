@@ -5,28 +5,9 @@ targetScope = 'subscription'
 // ======================== //
 @description('Azure region where the resources will be deployed in')
 @allowed([
-  'australiaeast' 
-  'brazilsouth' 
-  'canadacentral'
-  'centralus'
-  'eastasia'
-  'eastus'
-  'eastus2'
-  'francecentral'
-  'germanywestcentral'
-  'japaneast'
-  'koreacentral'
-  'northcentralus'
   'northeurope'
-  'norwayeast'
-  'southafricanorth'
-  'southcentralus'
-  'switzerlandnorth'
-  'uaenorth'
-  'uksouth'
   'westeurope'
-  'westus'
-  'westus3'])
+  ])
 param location string
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
@@ -64,7 +45,7 @@ var defaultTags = union({
 }, tags)
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'rg-${applicationName}'
+  name: 'STG-${applicationName}'
   location: location
   tags: defaultTags
 }

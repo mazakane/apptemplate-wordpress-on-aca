@@ -2,17 +2,17 @@ param naming object
 param location string = resourceGroup().location
 param tags object = {}
 param subnetId string
-param adminUsername string = 'hostadmin'
+param adminUsername string = 'bellsadmin'
 @secure()
 param adminPassword string = ''
 
 var resourceNames = {
-  nicName: 'jumphost-nic'
-  ipConfigurationName: 'jumphost-nic-ipconfig'
-  vmName: 'jumphost'
+  nicName: 'BellsStgNeBastion-nic'
+  ipConfigurationName: 'BellsStgNeBastion-nic-ipconfig'
+  vmName: 'BellsStgNeBastion'
 }
 
-resource jumphostnic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
+resource BellsStgNeBastionnic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
   name: resourceNames.nicName
   location: location
   properties: {
@@ -31,7 +31,7 @@ resource jumphostnic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
 }
 
 
-resource jumphost 'Microsoft.Compute/virtualMachines@2022-08-01' = {
+resource BellsStgNeBastion 'Microsoft.Compute/virtualMachines@2022-08-01' = {
   name: resourceNames.vmName
   location: location
   tags: tags
@@ -72,7 +72,7 @@ resource jumphost 'Microsoft.Compute/virtualMachines@2022-08-01' = {
     networkProfile: {
       networkInterfaces: [
         {
-          id: jumphostnic.id
+          id: BellsStgNeBastionnic.id
           properties: {
             deleteOption: 'Delete'
           }
