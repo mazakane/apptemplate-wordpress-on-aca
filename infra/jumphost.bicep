@@ -7,12 +7,12 @@ param adminUsername string = 'bellsadmin'
 param adminPassword string = ''
 
 var resourceNames = {
-  nicName: 'BellsStgNeBastion-nic'
-  ipConfigurationName: 'BellsStgNeBastion-nic-ipconfig'
-  vmName: 'BellsStgNeBastion'
+  nicName: 'BellsStgNeJuHst-nic'
+  ipConfigurationName: 'BellsStgNeJuHst-nic-ipconfig'
+  vmName: 'BellsStgNeJuHst'
 }
 
-resource BellsStgNeBastionnic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
+resource BellsStgNeJuHstnic 'Microsoft.Network/networkInterfaces@2022-07-01' = {
   name: resourceNames.nicName
   location: location
   properties: {
@@ -31,7 +31,7 @@ resource BellsStgNeBastionnic 'Microsoft.Network/networkInterfaces@2022-07-01' =
 }
 
 
-resource BellsStgNeBastion 'Microsoft.Compute/virtualMachines@2022-08-01' = {
+resource BellsStgNeJuHst 'Microsoft.Compute/virtualMachines@2022-08-01' = {
   name: resourceNames.vmName
   location: location
   tags: tags
@@ -72,7 +72,7 @@ resource BellsStgNeBastion 'Microsoft.Compute/virtualMachines@2022-08-01' = {
     networkProfile: {
       networkInterfaces: [
         {
-          id: BellsStgNeBastionnic.id
+          id: BellsStgNeJuHstnic.id
           properties: {
             deleteOption: 'Delete'
           }
